@@ -78,6 +78,7 @@ class Content(models.Model):
 
     class Meta:
         ordering = ['order']
+        verbose_name = verbose_name_plural ='Контент'
 
 
 class ItemBase(models.Model):
@@ -101,15 +102,30 @@ class ItemBase(models.Model):
 class Text(ItemBase):
     content = models.TextField(verbose_name='Содержание')
 
+    class Meta:
+        verbose_name = 'Текст'
+        verbose_name_plural = 'Тексты'
+
 
 class File(ItemBase):
     file = models.FileField(upload_to='files', verbose_name='Путь до файла')
+
+    class Meta:
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'
 
 
 class Image(ItemBase):
     file = models.FileField(upload_to='images',
                             verbose_name='Путь до картинки')
 
+    class Meta:
+        verbose_name = 'Картинка'
+        verbose_name_plural = 'Картинки'
+
 
 class Video(ItemBase):
     url = models.URLField(verbose_name='Ссылка на видео')
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Видео'
