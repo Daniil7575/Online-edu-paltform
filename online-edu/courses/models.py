@@ -78,7 +78,7 @@ class Content(models.Model):
 
     class Meta:
         ordering = ['order']
-        verbose_name = verbose_name_plural ='Контент'
+        verbose_name = verbose_name_plural = 'Контент'
 
 
 class ItemBase(models.Model):
