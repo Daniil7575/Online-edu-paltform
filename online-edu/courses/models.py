@@ -33,6 +33,9 @@ class Course(models.Model):
     overview = models.TextField(verbose_name='Описание')
     created = models.DateTimeField(auto_now_add=True,
                                    verbose_name='Дата создания')
+    students = models.ManyToManyField(User,
+                                      related_name='courses_joined',
+                                      blank=True)
 
     class Meta:
         ordering = ['-created']
