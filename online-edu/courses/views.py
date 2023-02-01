@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 from django.apps import apps
 from django.contrib.auth.mixins import (LoginRequiredMixin,
@@ -13,6 +14,7 @@ from django.views.generic.detail import DetailView
 
 from .forms import ModuleFormSet
 from .models import Content, Course, Module, Subject
+from students.forms import CourseEnrollForm
 
 
 class OwnerMixin():
@@ -195,3 +197,9 @@ class CourseListView(TemplateResponseMixin, View):
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/course/detail.html'
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        context['enroll_form'] = CourseEnrollForm(
+            initial={'course': self.object})
+        return context
